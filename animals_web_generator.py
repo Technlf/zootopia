@@ -24,8 +24,9 @@ def get_html_data(file_path):
         return ""
 
 
-def print_animals_data(animals_data):
-    """Print the animals data, only showing existing fields."""
+def convert_animals_data_to_str(animals_data):
+    """Convert the animals data to a string and return it,
+     only showing existing fields."""
     animal_output = ""
     for animal in animals_data:
         animal_output += f"Name: {animal.get('name')}\n"
@@ -43,8 +44,11 @@ def print_animals_data(animals_data):
 
     return animal_output
 
+
 def write_new_animals_html(template_path, output_path, animals_info):
+    """Write the animals data to a ne html file."""
     html_template = get_html_data(template_path)
     html_output = html_template.replace("__REPLACE_ANIMALS_INFO__", animals_info)
 
-    
+    with open(output_path, "w") as fileobject:
+        fileobject.write(html_output)

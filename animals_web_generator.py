@@ -30,20 +30,26 @@ def convert_animals_data_to_str(animals_data):
     animal_output = ""
     for animal in animals_data:
         animal_output += '<li class="cards__item">'
-        animal_output += f"Name: {animal.get('name')}<br/>\n"
+        animal_output += (f'<div class="card_title">'
+                          f'{animal.get('name')}</div><br/>\n')
+        animal_output += '<p class="card__text">'
 
         characteristics = animal.get('characteristics', {})
 
         if 'diet' in characteristics:   # Check if diet exist
-            animal_output += f"Diet: {characteristics['diet']}<br/>\n"
+            animal_output += (f'<strong>Diet:</strong> '
+                              f'{characteristics['diet']}<br/>\n')
+
         if animal.get('locations'): # Check if location exist
-            animal_output += f"Location: {animal['locations'][0]}<br/>\n"
+            animal_output += (f'<strong>Location:</strong> '
+                              f'{animal['locations'][0]}<br/>\n')
+
         if 'type' in characteristics:   # Check if type exist
-            animal_output += f"Type: {characteristics['type']}<br/>\n"
+            animal_output += (f'<strong>Type:</strong> '
+                              f'{characteristics['type']}<br/>\n')
 
+            animal_output += '</p>'
         animal_output += '</li>'
-
-        #animal_output += "\n" # Space between the animal outputs
 
     return animal_output
 

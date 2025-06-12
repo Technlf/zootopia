@@ -52,3 +52,13 @@ def write_new_animals_html(template_path, output_path, animals_info):
 
     with open(output_path, "w") as fileobject:
         fileobject.write(html_output)
+
+
+def main():
+    animals_data = get_animals_data("animals_data.json")
+    animals_output = convert_animals_data_to_str(animals_data)
+    write_new_animals_html("animals_template.html", "animals.html", animals_output)
+
+
+if __name__ == "__main__":
+    main()

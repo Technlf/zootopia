@@ -3,8 +3,15 @@ import json as js
 
 def load_animals_data(file_path):
     """Load the animals data from JSON file."""
-    with open(file_path, "r") as fileobject:
-        return js.load(fileobject)
+    try:
+        with open(file_path, "r") as fileobject:
+            return js.load(fileobject)
+    except FileNotFoundError:
+        print(f"File {file_path} not found.")
+        return []
+    except js.decoder.JSONDecodeError:
+        print(f"File {file_path} could not be decoded.")
+        return []
 
 
 def print_animals_data(animals_data):
